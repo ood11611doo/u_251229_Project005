@@ -18,6 +18,8 @@ public:
 	FVector minMove;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveData")
 	FVector maxMove;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveData")
+	float rotSpeed;
 
 public:	
 	// Sets default values for this actor's properties

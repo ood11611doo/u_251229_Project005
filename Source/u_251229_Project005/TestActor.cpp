@@ -9,6 +9,10 @@ ATestActor::ATestActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	startPosition = FVector(0.f, 50.f, 0.f);
+	minMove = FVector(-1000.f, -1000.f, 0.f);
+	maxMove = FVector(1000.f, 1000.f, 100.f);
+	rotSpeed = 360.f;
 }
 
 // Called when the game starts or when spawned
@@ -53,7 +57,10 @@ void ATestActor::BeginPlay()
 void ATestActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+  float zRot = rotSpeed * DeltaTime;
+	FRotator NewRotation = GetActorRotation();
+  NewRotation.Yaw += zRot;
+	SetActorRotation(NewRotation);
 }
 
 void ATestActor::Turn()
