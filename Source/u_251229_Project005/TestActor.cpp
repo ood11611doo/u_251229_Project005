@@ -19,7 +19,7 @@ ATestActor::ATestActor()
 void ATestActor::BeginPlay()
 {
 	Super::BeginPlay();
-  SetActorLocation(startPosition);
+	SetActorLocation(startPosition);
 
 	if (!GEngine) return;
 
@@ -31,11 +31,11 @@ void ATestActor::BeginPlay()
 	for (int i = 0; i < 10; i++) {
 		FVector Location = ActorTransform.GetLocation();
 		Turn();
-    Move();
+		Move();
 		FVector NewLocation = GetActorTransform().GetLocation();
 
 		float DistToAdd = FVector::Dist(Location, NewLocation);
-    DistCalculate += DistToAdd;
+		DistCalculate += DistToAdd;
 
 		FString LocationString = FString::Printf(TEXT("Moved location: X=%f, Y=%f, Z=%f"), NewLocation.X, NewLocation.Y, NewLocation.Z);
 		GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Green, LocationString);
@@ -45,37 +45,37 @@ void ATestActor::BeginPlay()
 			RandomEvent();
 			EventCalculate += 1;
 		}
-  }
+	}
 
 	FString DistString = FString::Printf(TEXT("Total Distance Moved: %f"), DistCalculate);
-  FString EventString = FString::Printf(TEXT("Total Events Triggered: %d"), EventCalculate);
-  GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Blue, DistString);
-  GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Blue, EventString);
+	FString EventString = FString::Printf(TEXT("Total Events Triggered: %d"), EventCalculate);
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Blue, DistString);
+	GEngine->AddOnScreenDebugMessage(-1, 10.0f, FColor::Blue, EventString);
 }
 
 // Called every frame
 void ATestActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-  float zRot = rotSpeed * DeltaTime;
+	float zRot = rotSpeed * DeltaTime;
 	FRotator NewRotation = GetActorRotation();
-  NewRotation.Yaw += zRot;
+	NewRotation.Yaw += zRot;
 	SetActorRotation(NewRotation);
 }
 
 void ATestActor::Turn()
 {
 	float randX = FMath::FRandRange(-180.f, 180.f);
-  float randY = FMath::FRandRange(-180.f, 180.f);
-  float randZ = FMath::FRandRange(-180.f, 180.f);
-  SetActorRotation(FRotator(randX, randY, randZ));
+	float randY = FMath::FRandRange(-180.f, 180.f);
+	float randZ = FMath::FRandRange(-180.f, 180.f);
+	SetActorRotation(FRotator(randX, randY, randZ));
 }
 void ATestActor::Move()
 {
 	float randX = FMath::FRandRange(minMove.X, maxMove.X);
 	float randY = FMath::FRandRange(minMove.Y, maxMove.Y);
 	float randZ = FMath::FRandRange(minMove.Z, maxMove.Z);
-  SetActorLocation(FVector(randX, randY, randZ));
+	SetActorLocation(FVector(randX, randY, randZ));
 }
 void ATestActor::RandomEvent()
 {
